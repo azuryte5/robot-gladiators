@@ -35,7 +35,7 @@ var fight = function (enemy) {
 
     enemy.health = Math.max(0, enemy.health - damage);
     console.log(
-      playerInfo.name + ' attacked ' + enemy.name + ' . ' + enemy.name + ' now has ' + enemy.health + 'health remaining.'
+      playerInfo.name + ' attacked ' + enemy.name + ' . ' + enemy.name + ' now has ' + enemy.health + ' health remaining.'
       );
 
     // check enemy's health
@@ -82,6 +82,7 @@ playerInfo.reset();
     if (playerInfo.health > 0) {
       // let player know what round they are in, remember that arrays start at 0 so it needs to have 1 added to it
       window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
+      ;
 
       // pick new enemy to fight based on the index of the enemyNames array
       var pickedEnemyObj = enemyInfo[i];
@@ -155,7 +156,7 @@ var shop = function () {
     break;
     case "UPGRADE": // backup case
     case "upgrade":
-      playerInfo.upgradeAtttack();
+      playerInfo.upgradeAttack();
     break;
     case "LEAVE":
     case "leave":
@@ -172,9 +173,21 @@ var shop = function () {
   }
   }
 
+// function to set name
+  var getPlayerName = function () {
+    var name = "";
+
+  while (name === "" || name === null){
+    name = prompt("What is your robot's name?");
+  }
+    
+  console.log("Your robot's name is " + name);
+
+  return name;
+};
 // player information
   var playerInfo = {
-    name: window.prompt("What is your robot's name?"),
+    name: getPlayerName(),
     health: 100,
     attack: 10,
     money: 10,
@@ -193,7 +206,7 @@ var shop = function () {
       window.alert("You don't have enough credits");
     }
   },
-  upgradeAtttack: function() {
+  upgradeAttack: function() {
     if(this.money >= 7) {
       window.alert("Upgrade attack power by 6 for 7 dollars")
       this.attack += 6;
